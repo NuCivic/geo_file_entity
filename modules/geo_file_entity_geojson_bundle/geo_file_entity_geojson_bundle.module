@@ -5,3 +5,49 @@
  */
 
 include_once 'geo_file_entity_geojson_bundle.features.inc';
+
+/**
+ * Implements hook_theme().
+ */
+function geo_file_entity_geojson_bundle_theme($existing, $type, $theme, $path) {
+  $tpls_path = drupal_get_path('module', 'geo_file_entity_geojson_bundle') . '/theme';
+  return array(
+    'geo_file__geojson' => array(
+      'render element' => 'elements',
+      'template' => 'geofile--geojson',
+      'path' => $tpls_path,
+    ),
+  );
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function geo_file_entity_geojson_bundle_entity_view_alter(&$build, $type) {
+  if ($type === 'geo_file' && $build['#entity']->type === 'geojson') {
+    // Load libraries.
+    libraries_load('recline');
+
+    // Build settings.
+    $settings = array();
+
+    // Build label column and geojson file.        
+    $geojson = $build['field_file']['#items'][0]['uri'];
+    $geojson = drupal_realpath($geojson);
+    $geojson = json_decode(file_get_contents($geojson));
+
+    $settings['geojson'] = $geojson;
+
+    $settings = array(
+      'geo_file_entity_geojson_bundle' => $settings,
+    );
+
+    // Add settings.
+    drupal_add_js($settings, 'setting');
+
+    // Add js controller and stylesheets.
+    $module_path = drupal_get_path('module', 'geo_file_entity_geojson_bundle');
+    drupal_add_js($module_path . '/geo_file_entity_geojson_bundle.js');
+    drupal_add_css($module_path . '/geo_file_entity_geojson_bundle.css');
+  }
+}

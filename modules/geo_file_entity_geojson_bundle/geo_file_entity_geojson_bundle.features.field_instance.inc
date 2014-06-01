@@ -17,7 +17,7 @@ function geo_file_entity_geojson_bundle_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_default',
@@ -85,7 +85,7 @@ function geo_file_entity_geojson_bundle_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',

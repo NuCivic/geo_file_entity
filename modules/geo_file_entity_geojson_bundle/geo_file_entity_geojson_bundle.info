@@ -4,6 +4,7 @@ package = NUDATA
 dependencies[] = eck
 dependencies[] = features
 dependencies[] = geo_file_entity
+dependencies[] = recline
 dependencies[] = text
 features[eck_bundle][] = geo_file_geojson
 features[features_api][] = api:2
