@@ -7,7 +7,7 @@ projects[entity][subdir] = contrib
 projects[features][version] = 2.6
 projects[features][subdir] = contrib
 
-projects[eck][version] = 2.0-rc3
+projects[eck][version] = 2.0-rc8
 projects[eck][subdir] = contrib
 
 ; Libraries
